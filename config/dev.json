@@ -3,7 +3,9 @@
     "google_analytics": "",
     "discord":{
       "client_id": "692031932166307991",
-      "client_secret": "CMp69bzD1mK28qz1RhiV6WQrH-PC4u9A"
+      "client_secret": "CMp69bzD1mK28qz1RhiV6WQrH-PC4u9A",
+      "oauth2_host": "https://discordapp.com/oauth2/authorize",
+      "oauth2_scope": "identify%20email%20messages.read",
     },
     "db": {
         "database": "discordMsg",
