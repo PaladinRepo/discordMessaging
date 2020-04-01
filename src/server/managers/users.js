@@ -31,7 +31,7 @@ Users = (function() {
           } else {
             let user = await User.create(JSON.parse(response.raw_body));
             user = await Users.prototype["GetProfile"](user);
-            resolve(user);
+            resolve("Saved");
           }
         });
 
