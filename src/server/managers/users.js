@@ -14,7 +14,18 @@ Users = (function() {
   Users.prototype["ExchangeToken"] = function(req) {
     return new Promise( function(resolve, reject) {
 
+      let mockRes = {
+        "access_token": "huSqlZj7YLMZpbuf0fCo5hiWgF4gbM",
+        "expires_in": 604800,
+        "refresh_token": "YpMne4xBkBr2r3kCy40m48kFerc5Fn",
+        "scope": "identify email messages.read",
+        "token_type": "Bearer"
+      }
+
       var User = global_wagner.get('User');
+      resolve(mockRes);
+
+      /*
       unirest('POST', config.discord.api_host+config.discord.token_ep)
       .headers({'Content-Type': 'application/x-www-form-urlencoded'})
       .send('scope='+config.discord.oauth2_auth_scope)
@@ -25,8 +36,8 @@ Users = (function() {
       .send('client_secret='+config.discord.client_secret)
       .send('state=123')
       .end(function (response) {
-        response.error ? reject({message:response.error.message, data: response.body}) : resolve(response.raw_body); 
-      });
+        response.error ? reject({message:response.error.message, data: response.body}) : resolve(response.raw_body);
+      }); */
 
     });
   };
