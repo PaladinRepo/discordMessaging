@@ -44,7 +44,6 @@ Users = (function() {
       try{
 
         var User = global_wagner.get('User');
-        // let user = await User.findOne(); // mocking
         unirest('GET', config.discord.api_host+'api/'+config.discord.api_version+'/users/@me')
         .headers({'Authorization': 'Bearer '+user.access_token})
         .end(async (response) => {

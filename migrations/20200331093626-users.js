@@ -1,13 +1,4 @@
 'use strict';
-/*
-{
-  "access_token": "huSqlZj7YLMZpbuf0fCo5hiWgF4gbM",
-  "expires_in": 604800,
-  "refresh_token": "YpMne4xBkBr2r3kCy40m48kFerc5Fn",
-  "scope": "identify email messages.read",
-  "token_type": "Bearer"
-}
-*/
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return  queryInterface.createTable(
