@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "45fae704-0cec-4d27-b38c-31d1c03d7228",
+		"name": "discord",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "discord token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "scope",
+							"value": "identify%20email%20messages.read",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "ATIbyYVt1dPzQHWOE4Ki4KGzbazowz",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://discord.local/accept/",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "692031932166307991",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "CMp69bzD1mK28qz1RhiV6WQrH-PC4u9A",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://discordapp.com/api/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"discordapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "discord token pass",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scope",
+									"value": "identify%20email%20messages.read",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "ATIbyYVt1dPzQHWOE4Ki4KGzbazowz",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://discord.local/accept/",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "692031932166307991",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "CMp69bzD1mK28qz1RhiV6WQrH-PC4u9A",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://discordapp.com/api/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"discordapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 01 Apr 2020 11:12:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "34"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 google"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "57d1dff72e1ad577-DEL"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"huSqlZj7YLMZpbuf0fCo5hiWgF4gbM\",\n    \"expires_in\": 604800,\n    \"refresh_token\": \"YpMne4xBkBr2r3kCy40m48kFerc5Fn\",\n    \"scope\": \"identify email messages.read\",\n    \"token_type\": \"Bearer\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer huSqlZj7YLMZpbuf0fCo5hiWgF4gbM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://discordapp.com/api/v6/users/@me",
+					"protocol": "https",
+					"host": [
+						"discordapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v6",
+						"users",
+						"@me"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get profile pass",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer huSqlZj7YLMZpbuf0fCo5hiWgF4gbM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://discordapp.com/api/v6/users/@me",
+							"protocol": "https",
+							"host": [
+								"discordapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v6",
+								"users",
+								"@me"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 01 Apr 2020 13:00:34 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "15"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 google"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "57d27e67fd43d54b-DEL"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"547742526845485057\",\n    \"username\": \"rahulsps\",\n    \"avatar\": null,\n    \"discriminator\": \"9974\",\n    \"email\": \"rahul.bhola.softprodigy@gmail.com\",\n    \"verified\": true,\n    \"locale\": \"en-GB\",\n    \"mfa_enabled\": false,\n    \"flags\": 0\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
