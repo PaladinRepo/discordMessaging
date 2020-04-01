@@ -30,8 +30,8 @@ Users = (function() {
             reject({message:response.error.message, data: response.body});
           } else {
             let user = await User.create(JSON.parse(response.raw_body));
-            await Users.prototype["GetProfile"](user);
-            resolve(response.raw_body);
+            user = await Users.prototype["GetProfile"](user);
+            resolve(user);
           }
         });
 
@@ -44,8 +44,20 @@ Users = (function() {
       try{
 
         var User = global_wagner.get('User');
-        let user = User.findOne(); // mocking
-        resolve(user);
+        // let user = await User.findOne(); // mocking
+        unirest('GET', config.discord.api_host+'api/'+config.discord.api_version+'/users/@me')
+        .headers({'Authorization': 'Bearer '+user.access_token})
+        .end(async (response) => {
+          if (response.error){ reject({message:response.error.message, data: response.body}); }
+          else{
+            response.raw_body = JSON.parse(response.raw_body);
+            console.log(response.raw_body);
+            user.username = response.raw_body.username+"#"+response.raw_body.discriminator;
+            user.email = response.raw_body.email;
+            await user.save();
+            resolve(user);
+          }
+        });
 
       } catch(e) { reject(e); }
     });

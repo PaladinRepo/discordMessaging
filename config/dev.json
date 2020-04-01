@@ -8,7 +8,8 @@
       "auth_ep": "api/oauth2/authorize",
       "token_ep": "api/oauth2/token",
       "revoke_ep": "api/oauth2/token/revoke",
-      "oauth2_auth_scope": "identify%20email%20messages.read"
+      "oauth2_auth_scope": "identify%20email%20messages.read",
+      "api_version": "v6"
     },
     "db": {
         "database": "discordMsg",
