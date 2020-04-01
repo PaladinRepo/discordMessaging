@@ -19,34 +19,34 @@ var User = sequelize.define("User",
     },
     email: {
       type: Sequelize.STRING(255),
-      unique: true,
+      unique: false,
       allowNull: true
     },
     access_token: {
       type: Sequelize.STRING(255),
-      unique: true,
+      unique: false,
       allowNull: true
     },
     refresh_token: {
       type: Sequelize.STRING(255),
-      unique: true,
+      unique: false,
       allowNull: true
     },
     expires_in: {
       type: Sequelize.STRING(255),
-      unique: true,
+      unique: false,
       allowNull: true
     },
     scope: {
       type: Sequelize.STRING(255),
-      unique: true,
+      unique: false,
       allowNull: true
     },
     token_type: {
       type: Sequelize.STRING(255),
-      unique: true,
+      unique: false,
       allowNull: true
-    },
+    }
   }, {
     tableName: 'discord_users',
     timestamps: true,

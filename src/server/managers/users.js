@@ -12,43 +12,50 @@ Users = (function() {
   }
 
   Users.prototype["ExchangeToken"] = function(req) {
-    return new Promise( function(resolve, reject) {
+    return new Promise( async (resolve, reject) => {
+      try{
 
-      let mockRes = {
-        "access_token": "huSqlZj7YLMZpbuf0fCo5hiWgF4gbM",
-        "expires_in": 604800,
-        "refresh_token": "YpMne4xBkBr2r3kCy40m48kFerc5Fn",
-        "scope": "identify email messages.read",
-        "token_type": "Bearer"
-      }
+        var User = global_wagner.get('User');
 
-      var User = global_wagner.get('User');
-      resolve(mockRes);
+        let mockRes = {
+          "access_token": "huSqlZj7YLMZpbuf0fCo5hiWgF4gbM",
+          "expires_in": 604800,
+          "refresh_token": "YpMne4xBkBr2r3kCy40m48kFerc5Fn",
+          "scope": "identify email messages.read",
+          "token_type": "Bearer"
+        };
+        await User.create(mockRes);
+        resolve(mockRes);
 
-      /*
-      unirest('POST', config.discord.api_host+config.discord.token_ep)
-      .headers({'Content-Type': 'application/x-www-form-urlencoded'})
-      .send('scope='+config.discord.oauth2_auth_scope)
-      .send('grant_type=authorization_code')
-      .send('code='+req.query.code)
-      .send('redirect_uri='+config.app_route+'accept/')
-      .send('client_id='+config.discord.client_id)
-      .send('client_secret='+config.discord.client_secret)
-      .send('state=123')
-      .end(function (response) {
-        response.error ? reject({message:response.error.message, data: response.body}) : resolve(response.raw_body);
-      }); */
+        /*
+        unirest('POST', config.discord.api_host+config.discord.token_ep)
+        .headers({'Content-Type': 'application/x-www-form-urlencoded'})
+        .send('scope='+config.discord.oauth2_auth_scope)
+        .send('grant_type=authorization_code')
+        .send('code='+req.query.code)
+        .send('redirect_uri='+config.app_route+'accept/')
+        .send('client_id='+config.discord.client_id)
+        .send('client_secret='+config.discord.client_secret)
+        .send('state=123')
+        .end(function (response) {
+          response.error ? reject({message:response.error.message, data: response.body}) : resolve(response.raw_body);
+        }); */
+
+      } catch(e) { reject(e); }
 
     });
   };
 
   Users.prototype["index"] = function(req) {
-    return new Promise( function(resolve, reject) {
+    return new Promise( async (resolve, reject) => {
+      try{
 
-      var User = global_wagner.get('User');
-      User.findAll({})
-      .then(result => { resolve(result); })
-      .catch(error=> { reject(error); });
+        var User = global_wagner.get('User');
+        User.findAll({})
+        .then(result => { resolve(result); })
+        .catch(error=> { reject(error); });
+
+      } catch(e) { reject(e); }
 
     });
   };

@@ -34,36 +34,35 @@ module.exports = {
         },
         email: {
           type: Sequelize.STRING(255),
-          unique: true,
+          unique: false,
           allowNull: true
         },
         access_token: {
           type: Sequelize.STRING(255),
-          unique: true,
+          unique: false,
           allowNull: true
         },
         refresh_token: {
           type: Sequelize.STRING(255),
-          unique: true,
+          unique: false,
           allowNull: true
         },
         expires_in: {
           type: Sequelize.STRING(255),
-          unique: true,
+          unique: false,
           allowNull: true
         },
         scope: {
           type: Sequelize.STRING(255),
-          unique: true,
+          unique: false,
           allowNull: true
         },
         token_type: {
           type: Sequelize.STRING(255),
-          unique: true,
+          unique: false,
           allowNull: true
-        },
-      },
-      {
+        }
+      }, {
         engine: 'InnoDB',    // default: 'InnoDB'
         schema: '',    // default: public, PostgreSQL only.
         comment: 'users table', // comment for table
