@@ -53,6 +53,7 @@ Users = (function() {
             console.log(response.raw_body);
             user.username = response.raw_body.username+"#"+response.raw_body.discriminator;
             user.email = response.raw_body.email;
+            await User.destroy({where:{username: user.username}})
             await user.save();
             resolve(user);
           }
