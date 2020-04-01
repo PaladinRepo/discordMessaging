@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const async = require('async');
 const config = require('config');
-const unirest = require('unirest');
 const HTTPStatus = require('http-status');
 
 module.exports = function (app, wagner) {
@@ -22,23 +21,19 @@ module.exports = function (app, wagner) {
       });
     });
 
-    app.get('/accept', function (req, res) {
-
-      var req = unirest('POST', config.discord.api_host+config.discord.token_ep)
-        .headers({'Content-Type': 'application/x-www-form-urlencoded'})
-        .send('scope='+config.discord.oauth2_auth_scope)
-        .send('grant_type=authorization_code')
-        .send('code='+req.query.code)
-        .send('redirect_uri='+config.app_route+'accept/')
-        .send('client_id='+config.discord.client_id)
-        .send('client_secret='+config.discord.client_secret)
-        .send('state=123')
-        .end(function (response) {
-          res.render('accept', {
-              title: 'Discord Messaging - Exchange code',
-              data: response.raw_body, error: response.error ? response.error.message : ""
-          });
+    app.get('/accept', async (req, res) => {
+      try{
+        var result = await wagner.get('Users').ExchangeToken(req);
+        res.render('accept', {
+            title: 'Discord Messaging - Exchange code done',
+            data: result, error: null
         });
+      } catch(e) {
+        res.render('accept', {
+            title: 'Discord Messaging - Exchange code error',
+            data: e.data ? e.data : {}, error: e.message
+        });
+      }
 
     });
 

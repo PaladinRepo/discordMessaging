@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Err: <%= error %></p>
+    <p>Err: <%= error||"" %></p>
     <p>Res: <code><%= JSON.stringify(data) %></code></p>
   </body>
 </html>
