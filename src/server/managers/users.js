@@ -68,9 +68,10 @@ Users = (function() {
       try{
 
         var User = global_wagner.get('User');
-        User.findAll({})
-        .then(result => { resolve(result); })
-        .catch(error=> { reject(error); });
+        resolve([]);
+        // User.findAll({})
+        // .then(result => { resolve(result); })
+        // .catch(error=> { reject(error); });
 
       } catch(e) { reject(e); }
     });
