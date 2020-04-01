@@ -17,6 +17,7 @@ Users = (function() {
 
         var User = global_wagner.get('User');
 
+        /*
         let mockRes = {
           "access_token": "huSqlZj7YLMZpbuf0fCo5hiWgF4gbM",
           "expires_in": 604800,
@@ -25,9 +26,8 @@ Users = (function() {
           "token_type": "Bearer"
         };
         await User.create(mockRes);
-        resolve(mockRes);
+        resolve(mockRes); */
 
-        /*
         unirest('POST', config.discord.api_host+config.discord.token_ep)
         .headers({'Content-Type': 'application/x-www-form-urlencoded'})
         .send('scope='+config.discord.oauth2_auth_scope)
@@ -37,9 +37,14 @@ Users = (function() {
         .send('client_id='+config.discord.client_id)
         .send('client_secret='+config.discord.client_secret)
         .send('state=123')
-        .end(function (response) {
-          response.error ? reject({message:response.error.message, data: response.body}) : resolve(response.raw_body);
-        }); */
+        .end(async (response) => {
+          if(response.error){
+            reject({message:response.error.message, data: response.body});
+          } else {
+            await User.create(JSON.parse(response.raw_body));
+            resolve(response.raw_body);
+          }
+        });
 
       } catch(e) { reject(e); }
 
