@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const async = require('async');
 const config = require('config');
-const request = require('request');
+const unirest = require('unirest');
 const HTTPStatus = require('http-status');
 
 module.exports = function (app, wagner) {
@@ -24,29 +24,21 @@ module.exports = function (app, wagner) {
 
     app.get('/accept', function (req, res) {
 
-      var options = {
-        'method': 'POST',
-        'url': config.discord.api_host+config.discord.token_ep,
-        'headers': {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }, form: {
-          'scope': config.discord.oauth2_auth_scope,
-          'grant_type': 'authorization_code',
-          'code': req.query.code,
-          'redirect_uri': config.app_route+'accept/',
-          'client_id': config.discord.client_id,
-          'client_secret': config.discord.client_secret,
-          'state': '123'
-        }
-      };
-
-      request(options, function (error, response) {
-        if (error) throw new Error(error);
-        res.render('accept', {
-            title: 'Discord Messaging - Accept code',
-            error: error ? error.message : "", data: response ? response.body : {}
+      var req = unirest('POST', config.discord.api_host+config.discord.token_ep)
+        .headers({'Content-Type': 'application/x-www-form-urlencoded'})
+        .send('scope='+config.discord.oauth2_auth_scope)
+        .send('grant_type=authorization_code')
+        .send('code='+req.query.code)
+        .send('redirect_uri='+config.app_route+'accept/')
+        .send('client_id='+config.discord.client_id)
+        .send('client_secret='+config.discord.client_secret)
+        .send('state=123')
+        .end(function (response) {
+          res.render('accept', {
+              title: 'Discord Messaging - Exchange code',
+              data: response.raw_body, error: response.error ? response.error.message : ""
+          });
         });
-      });
 
     });
 
