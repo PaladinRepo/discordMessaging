@@ -82,7 +82,7 @@ Users = (function() {
       try{
         var User = global_wagner.get('User');
         var userData = await User.findAll({ limit:1, order: [ [ 'createdAt', 'DESC' ]]});
-        
+
         unirest('POST', config.discord.api_host+config.discord.token_ep)
         .headers({'Content-Type': 'application/x-www-form-urlencoded'})
         .send('scope='+config.discord.oauth2_auth_scope)
@@ -96,10 +96,8 @@ Users = (function() {
           if(response.error){
             reject({message:response.error.message, data: response.body});
           } else {
-            console.log("response",response.raw_body);
-             let user = await User.update({refresh_token: response.raw_body.refresh_token},{where:{ id: userData[0].id}});
-             //user = await Users.prototype["GetProfile"](user);
-             resolve("Saved");
+            let user = await User.update(JSON.parse(response.raw_body),{where:{ id: userData[0].id}});
+            resolve("Saved");
           }
         });
       } catch(e) { reject(e); }
