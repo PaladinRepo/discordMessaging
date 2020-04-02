@@ -12,7 +12,7 @@ module.exports = function (app, wagner) {
 
         // IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
         res.redirect('/');
-    }
+    } 
 
     app.get('/', function (req, res) {
       res.render('index', {

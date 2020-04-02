@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-var User = sequelize.define("User",
+var User = sequelize.define("User", 
   {
     id: {
       type: Sequelize.INTEGER(20),
