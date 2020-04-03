@@ -82,24 +82,28 @@ Users = (function() {
       try{
         var User = global_wagner.get('User');
         var userData = await User.findAll({ limit:1, order: [ [ 'createdAt', 'DESC' ]]});
+        if(userData.length){
+          unirest('POST', config.discord.api_host+config.discord.token_ep)
+          .headers({'Content-Type': 'application/x-www-form-urlencoded'})
+          .send('scope='+config.discord.oauth2_auth_scope)
+          .send('grant_type=refresh_token')
+          .send('refresh_token='+userData[0].refresh_token)
+          .send('redirect_uri='+config.app_route+'accept/')
+          .send('client_id='+config.discord.client_id)
+          .send('client_secret='+config.discord.client_secret)
+          .send('state=123')
+          .end(async (response) => {
+            if(response.error){
+              reject({message:response.error.message, data: response.body});
+            } else {
+              let user = await User.update(JSON.parse(response.raw_body),{where:{ id: userData[0].id}});
+              resolve("Saved");
+            }
+          });
+        } else {
+          reject({message:"User not found"})
+        }
 
-        unirest('POST', config.discord.api_host+config.discord.token_ep)
-        .headers({'Content-Type': 'application/x-www-form-urlencoded'})
-        .send('scope='+config.discord.oauth2_auth_scope)
-        .send('grant_type=refresh_token')
-        .send('refresh_token='+userData[0].refresh_token)
-        .send('redirect_uri='+config.app_route+'accept/')
-        .send('client_id='+config.discord.client_id)
-        .send('client_secret='+config.discord.client_secret)
-        .send('state=123')
-        .end(async (response) => {
-          if(response.error){
-            reject({message:response.error.message, data: response.body});
-          } else {
-            let user = await User.update(JSON.parse(response.raw_body),{where:{ id: userData[0].id}});
-            resolve("Saved");
-          }
-        });
       } catch(e) { reject(e); }
     });
   };
