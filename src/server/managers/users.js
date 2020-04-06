@@ -7,9 +7,7 @@ Users = (function() {
 
   var global_wagner;
 
-  function Users(wagner){
-    global_wagner = wagner;
-  }
+  function Users(wagner){ global_wagner = wagner; }
 
   Users.prototype["ExchangeToken"] = function(req) {
     return new Promise( async (resolve, reject) => {
@@ -100,9 +98,7 @@ Users = (function() {
               resolve("Saved");
             }
           });
-        } else {
-          reject({message:"User not found"})
-        }
+        } else { reject({message:"User not found"}); }
 
       } catch(e) { reject(e); }
     });
@@ -129,9 +125,7 @@ Users = (function() {
             }
           });
 
-        } else {
-          reject({message:"User not found"})
-        }
+        } else { reject({message:"User not found"}); }
       } catch(e) { reject(e); }
     });
   };
