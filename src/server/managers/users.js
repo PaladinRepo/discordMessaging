@@ -108,6 +108,34 @@ Users = (function() {
     });
   };
 
+  Users.prototype["RevokeToken"] = function(req){
+    return new Promise( async(resolve, reject) => {
+      try{
+        var User = global_wagner.get('User');
+        var userData = await User.findAll({ limit:1, order: [ [ 'createdAt', 'DESC' ]]});
+        if(userData.length){
+
+          unirest('POST', config.discord.api_host+config.discord.revoke_ep)
+          .headers({'Content-Type': 'application/x-www-form-urlencoded'})
+          .send('client_id='+config.discord.client_id)
+          .send('client_secret='+config.discord.client_secret)
+          .send('token='+userData[0].access_token)
+          .end(async (response) => {
+            if(response.error){
+              reject({message:response.error.message, data: response.body});
+            } else {
+              await userData[0].destroy();
+              resolve("Revoked");
+            }
+          });
+
+        } else {
+          reject({message:"User not found"})
+        }
+      } catch(e) { reject(e); }
+    });
+  };
+
   return Users;
 
 })();
