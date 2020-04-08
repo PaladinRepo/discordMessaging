@@ -1,0 +1,48 @@
+{
+    "app_route": "http://discord.local/",
+    "google_analytics": "",
+    "discord":{
+      "client_id": "672055517279027200",
+      "client_secret": "GzeS7qsPuv6TuMfCBWCmnPjx_QB-H3XJ",
+      "api_host": "https://discordapp.com/",
+      "auth_ep": "api/oauth2/authorize",
+      "token_ep": "api/oauth2/token",
+      "revoke_ep": "api/oauth2/token/revoke",
+      "oauth2_auth_scope": "identify%20email%20messages.read",
+      "api_version": "v6"
+    },
+    "db": {
+        "database": "discordMsg",
+        "username": "root",
+        "password": "root",
+        "options": {
+            "timezone": "+05:30",
+            "dialect": "mysql",
+            "dialectOptions": {
+                "decimalNumbers": true
+            },
+            "port": 3306,
+            "pool": {
+                "max": 50,
+                "min": 0,
+                "idle": 500
+            },
+            "replication": {
+                "write": {
+                    "username": "root",
+                    "password": "root",
+                    "host": "127.0.0.1",
+                    "port": 3306
+                },
+                "read": [
+                    {
+                        "username": "root",
+                        "password": "root",
+                        "host": "localhost",
+                        "port": 3306
+                    }
+                ]
+            }
+        }
+    }
+}
