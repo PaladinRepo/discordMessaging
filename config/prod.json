@@ -29,15 +29,15 @@
             },
             "replication": {
                 "write": {
-                    "username": "root",
-                    "password": "root",
+                    "username": "becf1c5efe9860",
+                    "password": "5b2955c9",
                     "host": "127.0.0.1",
                     "port": 3306
                 },
                 "read": [
                     {
-                        "username": "root",
-                        "password": "root",
+                        "username": "becf1c5efe9860",
+                        "password": "5b2955c9",
                         "host": "localhost",
                         "port": 3306
                     }
