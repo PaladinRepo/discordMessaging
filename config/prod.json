@@ -1,5 +1,5 @@
 {
-    "app_route": "http://discord.local/",
+    "app_route": "https://discord-messaging.herokuapp.com/",
     "google_analytics": "",
     "discord":{
       "client_id": "672055517279027200",
@@ -12,9 +12,9 @@
       "api_version": "v6"
     },
     "db": {
-        "database": "discordMsg",
-        "username": "root",
-        "password": "root",
+        "database": "heroku_d92d412da717c5b",
+        "username": "becf1c5efe9860",
+        "password": "5b2955c9",
         "options": {
             "timezone": "+05:30",
             "dialect": "mysql",
