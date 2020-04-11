@@ -31,14 +31,14 @@
                 "write": {
                     "username": "becf1c5efe9860",
                     "password": "5b2955c9",
-                    "host": "127.0.0.1",
+                    "host": "us-cdbr-iron-east-01.cleardb.net",
                     "port": 3306
                 },
                 "read": [
                     {
                         "username": "becf1c5efe9860",
                         "password": "5b2955c9",
-                        "host": "localhost",
+                        "host": "us-cdbr-iron-east-01.cleardb.net",
                         "port": 3306
                     }
                 ]
