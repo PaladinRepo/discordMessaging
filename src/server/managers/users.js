@@ -130,6 +130,23 @@ Users = (function() {
     });
   };
 
+  Users.prototype["DirectMessages"] = function(req){
+    return new Promise( async (resolve, reject) => {
+      try{
+        var User = global_wagner.get('User'); 
+        var userData = await User.findAll({ limit:1, order: [ [ 'createdAt', 'DESC' ]]});
+        if(userData.length){
+          unirest('GET', config.discord.api_host+'api/'+config.discord.api_version+'/users/@me/channels')
+          .headers({'Authorization': 'Bearer '+userData[0].access_token})
+          .end(async (response) => {
+            console.log(response);
+            resolve(response);
+          });
+        } else {  reject({message: "User not found"}); }
+      } catch(e) { reject(e); }
+    });
+  };
+
   return Users;
 
 })();
